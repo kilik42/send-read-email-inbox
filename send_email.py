@@ -10,8 +10,13 @@ def send_mail(text='Email Body', subject ='Hello world', from_email='test@gmail.
     assert isinstance(to_emails, list)
     msg = MIMEMultipart('alternative')
     msg['From'] = from_email
-    msg['To'] = to_emails
+    msg['To'] = ", ".join(to_emails)
+    msg['Subject'] = subject
 
+    html_part = MIMEText("<h1> This is working</h1>")
+    msg.attach(html_part)
+
+    msg_str = msg.as_string()
 
     #log in to smtp server
     server = smtplib.SMTP(host='smtp.sendgrid.com', port=547)
