@@ -8,6 +8,7 @@ password = 'letsgetitstarted2020'
 
 def send_mail(text='Email Body', subject ='Hello world', from_email='test@gmail.com', to_emails=None):
     assert isinstance(to_emails, list)
+    #create email
     msg = MIMEMultipart('alternative')
     msg['From'] = from_email
     msg['To'] = ", ".join(to_emails)
@@ -23,6 +24,7 @@ def send_mail(text='Email Body', subject ='Hello world', from_email='test@gmail.
     server.ehlo()
     server.starttls()
     server.login()
+    #send email
     server.sendmail(from_email, to_emails, msg_str)
 
     server.login(username, password)
